@@ -1,12 +1,12 @@
 .gameContainer{
-	width:720px;
+	width:440px;
 	list-style: none;
 }
 .gameContainer li{
 	float:left;
 	position:relative;
-	width:170px;
-	height:200px;
+	width:100px;
+	height:121px;
 	margin-left:10px;
 	display: block;
 	cursor: pointer;
@@ -19,11 +19,15 @@
 	transform-style: preserve-3d;
 	position:relative;
 }
+.flipper im{
+	width:100px;
+	height:121px;
+}
 .front,.back{
 	backface-visibility: hidden;
 	position: absolute;
-	width:170px;
-	height:200px;
+	width:100px; /*170*/
+	height:121px; /* 200 */
 	top: 0;
 	left: 0;
 }
