@@ -1,5 +1,15 @@
 # angular2-lab
-Angular 2.0. evaluation lab
+Angular 2.0. Memory Game
+
+Developer Guide
+==============
+
+This is an angular 2 app, that renders a Memory game with flipping images.<br/>
+I'm using typescript 1.5 for Game's @Component, @View and injectables objects. I'm also using Jquery for CSS animations.<br/>
+
+1. Install nodej and npm
+--------------
+https://nodejs.org/
 
 # node js server
 npm install -g http-server
