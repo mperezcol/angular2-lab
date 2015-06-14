@@ -7,7 +7,6 @@ declare function animateUnFlip(id:number);
 class Item {
   id: number;
   value: string;
-  image: string;
   flipped: boolean;
   paired: boolean;
   constructor(pId:number,pValue:string){
@@ -73,12 +72,12 @@ class ItemService{
      <li *for="#item of pairs">
          <div class="flipper" id="flipper{{ item.id }}">
            <div class="front">
-             <img id="front{{ item.id }}" alt="back" src="images/back.png" (click)="flipItem(item);" title="Click me!"/>
+             <img id="front{{ item.id }}" alt="back" (click)="flipItem(item);" src="images/back.png"/>
            </div>
            <div class="back">
-             <img id="back{{ item.id }}" alt="{{ item.value }}" src="images/{{ item.value }}.png" (click)="flipItem(item);" title="Click me!"/>
+             <img id="back{{ item.id }}" alt="{{ item.value }}" (click)="flipItem(item);" src="images/{{ item.value }}.png"/>
            </div>
-        </div>
+          </div>
      </li>
   </ul>
   
@@ -104,7 +103,7 @@ class GameComponent {
       if (this.lastFlipped === null) { // First item selected
         this.lastFlipped = item;
         item.flip();
-      } else if(this.lastFlipped != null && this.lastFlipped2 != null){ // two items previously selected
+      } else if(this.lastFlipped != null && this.lastFlipped2 != null){ // two non-matching items previously selected
           this.lastFlipped2.unflip();
           this.lastFlipped.unflip();
           this.lastFlipped = item;

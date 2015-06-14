@@ -14,7 +14,6 @@
 .effectFlip{
 	transform: rotateY(180deg);
 }
-
 .flipper{
 	transition: 0.6s;
 	transform-style: preserve-3d;

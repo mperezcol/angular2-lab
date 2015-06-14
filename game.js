@@ -108,7 +108,7 @@ var GameComponent = (function () {
             injectables: [ItemService]
         }),
         angular2_1.View({
-            template: "\n\n  <p>Pairs left to win: {{ pairsLeft }}</p>\n  <ul class=\"gameContainer\">\n     <li *for=\"#item of pairs\">\n         <div class=\"flipper\" id=\"flipper{{ item.id }}\">\n           <div class=\"front\">\n             <img id=\"front{{ item.id }}\" alt=\"back\" src=\"images/back.png\" (click)=\"flipItem(item);\" title=\"Click me!\"/>\n           </div>\n           <div class=\"back\">\n             <img id=\"back{{ item.id }}\" alt=\"{{ item.value }}\" src=\"images/{{ item.value }}.png\" (click)=\"flipItem(item);\" title=\"Click me!\"/>\n           </div>\n        </div>\n     </li>\n  </ul>\n  \n  ",
+            template: "\n\n  <p>Pairs left to win: {{ pairsLeft }}</p>\n  <ul class=\"gameContainer\">\n     <li *for=\"#item of pairs\">\n         <div class=\"flipper\" id=\"flipper{{ item.id }}\">\n           <div class=\"front\">\n             <img id=\"front{{ item.id }}\" alt=\"back\" (click)=\"flipItem(item);\" src=\"images/back.png\"/>\n           </div>\n           <div class=\"back\">\n             <img id=\"back{{ item.id }}\" alt=\"{{ item.value }}\" (click)=\"flipItem(item);\" src=\"images/{{ item.value }}.png\"/>\n           </div>\n          </div>\n     </li>\n  </ul>\n  \n  ",
             directives: [angular2_1.For, angular2_1.If]
         }), 
         __metadata('design:paramtypes', [ItemService])
