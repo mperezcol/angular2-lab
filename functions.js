@@ -10,3 +10,11 @@ function animateUnFlip(msg){
 		$("#playerContainer"+elementArray[0] + " #flipper"+elementArray[1]).removeClass("effectFlip");
 	}
 }
+function playerFinished(msg){
+	var playerID = parseInt(msg);
+	if(playerID == 1){
+		clearTimeout(timerPlayer1);
+	}else{
+		clearTimeout(timerPlayer2);
+	}
+}

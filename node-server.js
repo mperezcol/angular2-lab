@@ -31,9 +31,6 @@ var server  = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 io.on('connection', function(socket){
-  socket.on('newPlayer', function(msg){
-    io.emit('newPlayer', msg); //socket.broadcast
-  });
   socket.on('flip', function(msg){
     io.emit('flip', msg);
   });

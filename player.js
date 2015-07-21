@@ -14,10 +14,11 @@ var angular2_1 = require('angular2/angular2');
 var socket = io(); //io.connect("localhost:4000");
 /* Records the time in milliseconds, after a given event */
 var Timer = (function () {
-    function Timer() {
+    function Timer(idPlayer) {
         this.millisec = 0;
         this.seconds = 0;
         this.minutes = 0;
+        this.idPlayer = idPlayer;
     }
     Timer.prototype.display = function () {
         var _this = this;
@@ -34,15 +35,31 @@ var Timer = (function () {
             this.millisec += 1;
         }
         this.formattedTime = this.minutes + ":" + this.seconds + ":" + this.millisec;
-        this.timer = setTimeout(function () { return _this.display(); }, 100);
+        if (this.idPlayer === 1) {
+            timerPlayer1 = setTimeout(function () { return _this.display(); }, 100);
+        }
+        else if (this.idPlayer === 2) {
+            timerPlayer2 = setTimeout(function () { return _this.display(); }, 100);
+        }
     };
     Timer.prototype.startstoptimer = function () {
-        if (this.timer > 0) {
-            clearTimeout(this.timer);
-            this.timer = 0;
+        if (this.idPlayer === 1) {
+            if (timerPlayer1 > 0) {
+                clearTimeout(timerPlayer1);
+                timerPlayer1 = 0;
+            }
+            else {
+                this.display();
+            }
         }
-        else {
-            this.display();
+        else if (this.idPlayer === 2) {
+            if (timerPlayer2 > 0) {
+                clearTimeout(timerPlayer2);
+                timerPlayer2 = 0;
+            }
+            else {
+                this.display();
+            }
         }
     };
     return Timer;
@@ -111,7 +128,7 @@ var PlayerComponent = (function () {
         this.idPlayer = playersNumber;
         playersNumber += 1;
         // game starts
-        this.timer = new Timer();
+        this.timer = new Timer(this.idPlayer);
         this.timer.startstoptimer();
     }
     /* Game logic */
@@ -141,6 +158,7 @@ var PlayerComponent = (function () {
                 if (this.pairsLeft === 0) {
                     //game ends
                     this.timer.startstoptimer();
+                    socket.emit('playerHasWon', "" + this.idPlayer);
                 }
             }
             else {

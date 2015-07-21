@@ -5,19 +5,22 @@ declare function animateFlip(id:number);
 declare function animateUnFlip(id:number);
 declare var io;
 var socket = io(); //io.connect("localhost:4000");
-
 declare var playersNumber;
+declare var timerPlayer1;
+declare var timerPlayer2;
+
 /* Records the time in milliseconds, after a given event */
 class Timer {
   millisec: number;
   seconds: number;
   minutes: number;
-  timer: number;
+  idPlayer: number;
   formattedTime: string;
-  constructor(){
+  constructor(idPlayer:number){
     this.millisec = 0;
     this.seconds = 0;
     this.minutes = 0; 
+    this.idPlayer = idPlayer;
   }
   display() {
     if (this.millisec >= 9) {
@@ -32,14 +35,28 @@ class Timer {
       this.millisec += 1;
     }
     this.formattedTime = this.minutes + ":" + this.seconds + ":" + this.millisec;
-    this.timer = setTimeout(() => this.display(), 100);
+
+    if(this.idPlayer === 1){
+      timerPlayer1 = setTimeout(() => this.display(), 100);  
+    }else if(this.idPlayer === 2){
+      timerPlayer2 = setTimeout(() => this.display(), 100);  
+    }
   }
   startstoptimer() {
-    if (this.timer > 0) {
-      clearTimeout(this.timer);
-      this.timer = 0;
-    } else {
-      this.display();
+    if(this.idPlayer === 1){
+      if (timerPlayer1 > 0) {
+        clearTimeout(timerPlayer1);
+        timerPlayer1 = 0;
+      } else {
+        this.display();
+      }
+    }else if(this.idPlayer === 2){
+      if (timerPlayer2 > 0) {
+        clearTimeout(timerPlayer2);
+        timerPlayer2 = 0;
+      } else {
+        this.display();
+      }
     }
   }
 }
@@ -140,7 +157,7 @@ export class PlayerComponent{
     this.idPlayer = playersNumber;
     playersNumber+=1;
     // game starts
-    this.timer = new Timer();
+    this.timer = new Timer(this.idPlayer);
     this.timer.startstoptimer();
   }
   /* Game logic */
@@ -167,6 +184,7 @@ export class PlayerComponent{
           if(this.pairsLeft === 0){
             //game ends
             this.timer.startstoptimer();
+            socket.emit('playerHasWon', "" + this.idPlayer);
           }
       } else { // Second tile selected
           this.lastFlipped2 = this.lastFlipped;

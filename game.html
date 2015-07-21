@@ -14,6 +14,8 @@
 
     <script type="text/javascript">
       var playersNumber = 0;
+      var timerPlayer1;
+      var timerPlayer2;
     </script>
   </head>
   <body>
@@ -34,8 +36,8 @@
         socket.on('unflip', function(msg){
           animateUnFlip(msg);
         });
-        socket.on('newPlayer', function(msg){
-          blockPlayer(msg);
+        socket.on('playerHasWon', function(msg){
+          playerFinished(msg);
         });
       });
     </script>
