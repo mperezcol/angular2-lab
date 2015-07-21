@@ -7,12 +7,11 @@ var favicon = require('serve-favicon');
 var morgan = require('morgan'); // formerly express.logger
 var errorhandler = require('errorhandler');
 var app = express();
- 
+
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 
 //C:\\Developer\\workspaces\\angular2-lab\\
-
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
  
@@ -26,8 +25,26 @@ app.use(express.static(path.join(__dirname, '')));
 // development only
 if ('development' === app.get('env')) {
   app.use(errorhandler());
-}
+};
  
-http.createServer(app).listen(app.get('port'), function () {
-   console.log('myApp server listening on port ' + app.get('port'));
+var server  = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+  socket.on('newPlayer', function(msg){
+    io.emit('newPlayer', msg); //socket.broadcast
+  });
+  socket.on('flip', function(msg){
+    io.emit('flip', msg);
+  });
+  socket.on('unflip', function(msg){
+    io.emit('unflip', msg);
+  });
+  socket.on('playerHasWon', function(msg){
+    io.emit('playerHasWon', msg);
+  });
+});
+
+server.listen(app.get('port'), function(){
+  console.log('listening on *:4000');
 });

@@ -1,8 +1,53 @@
-.gameContainer{
-	width:440px;
-	list-style: none;
+h1{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
-.gameContainer li{
+#playerContainer1,#playerContainer2{
+	position: relative;
+	float:left;
+}
+.gameContainer{
+	width:1024;
+	margin-top: 0px;
+	position: relative;
+	float:left;
+}
+player{
+	width:440px;
+	height: 600px;
+	display: block;
+	position: relative;
+	float: left;
+	margin-left:50px;
+}
+player .playerTitle{
+	position: relative;
+	float: left;
+	width:100%;	
+}
+player .playerTitle h2{
+	widht:100;
+	text-align: center;
+	padding-top: 0px;
+	display: block;
+}	
+player .playerTitle span{
+	widht:100;
+	text-align: center;
+	display: block;
+}
+.tileList{
+	width:100%;
+	list-style: none;
+	position:relative;
+	float:left;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.tileList li{
 	float:left;
 	position:relative;
 	width:100px;
