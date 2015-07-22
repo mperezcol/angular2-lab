@@ -1,3 +1,6 @@
+var playersNumber = 0;
+var timerPlayer1;
+var timerPlayer2;
 function animateFlip(msg){
 	var elementArray = (""+msg).split(","); 
 	if((elementArray[0]) && (elementArray[1]) ){

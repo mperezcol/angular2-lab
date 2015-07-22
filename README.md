@@ -23,6 +23,8 @@ npm install ejs --save
 # typescript
 npm install -g tsd
 tsd query angular2 --action install
+npm install -g tsd@^0.6.0
+tsd install angular2 es6-promise rx rx-lite
 npm install -g typescript@^1.5.0-beta
 tsc --watch -m commonjs -t es5 --emitDecoratorMetadata game.ts
 

@@ -4,23 +4,17 @@
   	<link rel="stylesheet" href="css/style.css"/>
     <!-- Web Sockets --> 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js" type="text/javascript"></script>
+    <!-- Jquery for animations --> 
     <script src="http://code.jquery.com/jquery-1.11.1.js" type="text/javascript"></script>
+    <!-- game functions -->
     <script src="functions.js" type="text/javascript"></script>
-    
     <!-- Angular -->
     <script src="https://github.jspm.io/jmcriffey/bower-traceur-runtime@0.0.87/traceur-runtime.js" type="text/javascript"></script>
     <script src="https://jspm.io/system@0.16.js" type="text/javascript"></script>
     <script src="https://code.angularjs.org/2.0.0-alpha.23/angular2.dev.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-      var playersNumber = 0;
-      var timerPlayer1;
-      var timerPlayer2;
-    </script>
   </head>
   <body>
-    <game>... Loading
-    </game>
+    <game>... Loading Game!</game>
     <script type="text/javascript">
       System.import('game');
     </script>
@@ -29,7 +23,6 @@
     <script type="text/javascript">
       var socket = io();
       $( document ).ready(function() {
-
         socket.on('flip', function(msg){
           animateFlip(msg);
         });
@@ -41,6 +34,5 @@
         });
       });
     </script>
-
   </body>
 </html>

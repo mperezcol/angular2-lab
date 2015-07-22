@@ -1,8 +1,9 @@
 ///<reference path="typings/angular2/angular2.d.ts" />
 ///<reference path="player.ts" />
+///<reference path="lib.ts" />
 import {Component, View, bootstrap, For, If} from 'angular2/angular2';
-import {PlayerComponent,TileService} from 'player';
-
+import {PlayerComponent} from 'player';
+import {TileService} from 'lib';
 /* Contenedor principal */
 @Component({
   selector: 'game',
@@ -10,9 +11,7 @@ import {PlayerComponent,TileService} from 'player';
 })
 @View({
   template: `
-
   <h1>Multi-user Memory Game!!</h1>
-  
   <div id="gameContainer">
     <div id="playerContainer1">
       <player>
@@ -24,7 +23,7 @@ import {PlayerComponent,TileService} from 'player';
     </div>
   </div>
   `,
-  directives: [For, If,PlayerComponent] 
+  directives: [PlayerComponent] 
 })
 export class GameComponent {
   player1: PlayerComponent;

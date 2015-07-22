@@ -11,8 +11,10 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
 };
 ///<reference path="typings/angular2/angular2.d.ts" />
 ///<reference path="player.ts" />
+///<reference path="lib.ts" />
 var angular2_1 = require('angular2/angular2');
 var player_1 = require('player');
+var lib_1 = require('lib');
 /* Contenedor principal */
 var GameComponent = (function () {
     function GameComponent(player1, player2) {
@@ -22,11 +24,11 @@ var GameComponent = (function () {
     GameComponent = __decorate([
         angular2_1.Component({
             selector: 'game',
-            injectables: [player_1.PlayerComponent, player_1.TileService]
+            injectables: [player_1.PlayerComponent, lib_1.TileService]
         }),
         angular2_1.View({
-            template: "\n\n  <h1>Multi-user Memory Game!!</h1>\n  \n  <div id=\"gameContainer\">\n    <div id=\"playerContainer1\">\n      <player>\n      </player>\n    </div>\n    <div id=\"playerContainer2\">\n      <player>\n      </player>\n    </div>\n  </div>\n  ",
-            directives: [angular2_1.For, angular2_1.If, player_1.PlayerComponent]
+            template: "\n  <h1>Multi-user Memory Game!!</h1>\n  <div id=\"gameContainer\">\n    <div id=\"playerContainer1\">\n      <player>\n      </player>\n    </div>\n    <div id=\"playerContainer2\">\n      <player>\n      </player>\n    </div>\n  </div>\n  ",
+            directives: [player_1.PlayerComponent]
         }), 
         __metadata('design:paramtypes', [player_1.PlayerComponent, player_1.PlayerComponent])
     ], GameComponent);
